@@ -1,0 +1,12 @@
+<table class="table" border="1">
+    <tr>
+        <th>Surface:</th>
+    </tr>
+    <tr *ngFor="let p of listApartments">
+        <td>{{p.surface}}</td>
+        <td><button [routerLink]="['/details', p.id]">Détails</button></td>
+       
+        
+    
+    </tr>
+    </table>

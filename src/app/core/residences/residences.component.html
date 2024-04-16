@@ -1,0 +1,39 @@
+<input type="number" [(ngModel)]="FilterSurface" placeholder="Filter by surface" (keydown.enter)="filterBySurface()">
+
+<table class="table" border="1">
+<tr>
+    <th>Name:</th>
+    <th>Adress</th>
+    <th>Image</th>
+</tr>
+<tr *ngFor="let r of listResidences">
+    <td>{{ r.name }}</td>
+    <td>{{r.address }}</td>
+    <td><img [src]="r.image"></td>
+    <td><button (click)="AfficherApartments(r.id)">Show apartments</button></td>
+  
+
+</tr>
+</table>
+<div *ngIf="ResidenceApartments.length > 0">
+    <p>Apartments:</p>
+    <ul>
+      <li *ngFor="let apartment of ResidenceApartments">
+        {{ apartment.description }}
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="ResidenceApartments.length === 0">
+    <p>No Apartments found</p>
+  </div>
+  <ul>
+    <li *ngFor="let apartment of favoris">
+      {{ apartment.description }}
+      <button (click)="Like(apartment)">Like</button>
+    </li>
+  </ul>
+  <div *ngIf="ResidenceApartments.length === 0">
+    <p>No Apartments found</p>
+  </div>
+  
+  
