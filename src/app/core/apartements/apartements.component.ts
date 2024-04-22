@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Apartment } from '../../core/models/Apartment'
 import { Residence } from '../../core/models/Residence'
 
@@ -8,6 +8,13 @@ import { Residence } from '../../core/models/Residence'
   styleUrls: ['./apartements.component.css']
 })
 export class ApartementsComponent {
+
+  FilterSurface: number = 0;
+  favoris: Apartment[] = [];
+  ResidenceApartments: Apartment[] = [];
+  surfaceMax!: number;
+  id!: number;
+  filteredApartments: Apartment[] = [];
 
 
   listResidences:Residence[]=[
@@ -27,5 +34,23 @@ export class ApartementsComponent {
     { id: 3, appartNum: 3, floorNum: 0, surface: 150, terrace: "oui", surfaceTerrace: 30, category: "S+3", description: "Appartement S+3", residence: this.listResidences[1] }
   ];
 
+  constructor() {
+    this.filteredApartments = this.listApartments; // Initialisation de filteredApartments
+  }
+
+  ngOnInit() {}
+
+  Like(a: Apartment) {
+    this.favoris.push(a);
+    console.log(this.favoris);
+  }
+
+  filterBySurface() {
+    if (!this.FilterSurface) {
+      this.filteredApartments = this.listApartments;
+    } else {
+      this.filteredApartments = this.listApartments.filter(apartment => apartment.surface <= this.FilterSurface);
+    }
+  }
 
 }

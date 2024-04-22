@@ -1,12 +1,20 @@
-<table class="table" border="1">
-    <tr>
-        <th>Surface:</th>
-    </tr>
-    <tr *ngFor="let p of listApartments">
-        <td>{{p.surface}}</td>
-        <td><button [routerLink]="['/details', p.id]">Détails</button></td>
-       
-        
-    
-    </tr>
-    </table>
+<input type="number" [(ngModel)]="FilterSurface" placeholder="Enter surface" (keydown.enter)="filterBySurface()">
+<table class="table">
+  <tr>
+    <th>appartNum</th>
+    <th>floorNum</th>
+    <th>surface</th>
+    <th>terrace</th>
+    <th>Action</th>
+  </tr>
+  <tr *ngFor="let a of filteredApartments">
+    <td>{{ a.appartNum }}</td>
+    <td>{{ a.floorNum }}</td>
+    <td>{{ a.surface }}</td>
+    <td>{{ a.terrace }}</td>
+    <td><button (click)="Like(a)" class="btn btn-dark">Like</button></td>
+    <td><button [routerLink]="['/detail', a.id]" class="btn btn-info">Detail</button></td>
+
+
+  </tr>
+</table>
